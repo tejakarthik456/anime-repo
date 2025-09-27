@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Anime World</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: white;
+  text-align: center;
+  overflow-x: hidden;
+  /* Full-page background image with overlay */
+  background: linear-gradient(to bottom right, rgba(27,27,47,0.7), rgba(31,64,104,0.7)),
+              url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5UTAF03C4MjewnidWAk4PgJ9OTW2YyvEqhGAApBD6-Ubc-_9jGIcY9tfA_ko2MGPoBZQ&usqp=CAU") no-repeat center center fixed;
+  background-size: cover;
+}
+section {
+  display: none;
+  min-height: 100vh;
+  padding: 50px 20px;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+}
+h1 { color: #00ffcc; font-size: 2.5em; margin-bottom: 40px; }
+.anime-list { display:flex; flex-direction:column; gap:20px; width:100%; max-width:900px; margin:auto; }
+.anime-card { display:flex; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:15px; padding:20px; align-items:center; gap:20px; cursor:pointer; transition:0.3s; }
+.anime-card:hover { transform:scale(1.02); box-shadow:0 0 15px #00ffcc66; }
+.anime-poster { width:80px; height:110px; border-radius:8px; object-fit:cover; border:2px solid #00ffcc55; flex-shrink:0; }
+.anime-info h3 { margin:0 0 10px; font-size:1.4em; color:#00ffcc; }
+.anime-info p { margin:0; font-size:1em; color:#ddd; }
+.detail-img { width:250px; border-radius:10px; margin:20px 0; border:3px solid #00ffcc; }
+.detail-desc { font-size:1.2em; line-height:1.6; max-width:800px; margin:auto; }
+.btn { display:inline-block; margin-top:20px; padding:12px 25px; background:#00ffb3; color:black; font-size:1.1em; border-radius:8px; cursor:pointer; transition:0.3s; text-decoration:none; }
+.btn:hover { background:#00ccff; box-shadow:0 0 12px #00ccff; }
+
+/* Sites Section */
+#sites {
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+              url("https://e0.pxfuel.com/wallpapers/609/791/desktop-wallpaper-straw-hat-pirates-one-piece-one-piece-wano-arc.jpg") no-repeat center center fixed;
+  background-size: cover; display:flex; flex-direction:column; align-items:center; padding:50px 20px;
+}
+header { font-size:2.5em; padding:20px; background: rgba(0,0,0,0.7); border-radius:10px; margin-bottom:30px; }
+.sites { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; max-width:900px; width:100%; }
+.site-btn { width:120px; height:120px; background:rgb(240,158,158); display:flex; flex-direction:column; justify-content:center; align-items:center; border-radius:15px; text-decoration:none; font-size:1em; color:black; transition:0.3s; box-shadow:0 0 10px rgba(255,255,255,0.3); }
+.site-btn img { width:60px; height:60px; margin-bottom:10px; }
+.site-btn:hover { transform:scale(1.1); box-shadow:0 0 20px #00ccff; }
+
+/* Robot Styling */
+#robot {
+  position:fixed; width:80px; height:80px; bottom:30px; right:30px; cursor:pointer; z-index:10;
+  animation: moveAround 6s linear infinite alternate;
+}
+#robot img { width:100%; height:100%; animation:float 2s ease-in-out infinite; }
+@keyframes float { 0%{transform:translateY(0);}50%{transform:translateY(-10px);}100%{transform:translateY(0);} }
+@keyframes moveAround {0%{transform:translate(0,0);}25%{transform:translate(-20px,-10px);}50%{transform:translate(20px,10px);}75%{transform:translate(-20px,10px);}100%{transform:translate(0,0);} }
+#robot::after {
+  content: "Click to Explore Sites!";
+  position: absolute; top:-30px; left:50%; transform:translateX(-50%);
+  background:#00ccff; color:black; padding:5px 10px; border-radius:10px; font-size:0.9em; box-shadow:0 0 10px #00ccff; white-space:nowrap;
+}
+
+/* Main banner image */
+#home-banner {
+  width:80%;
+  max-width:900px;
+  border-radius:15px;
+  margin-bottom:40px;
+  border:3px solid #00ffcc;
+}
+</style>
+</head>
+<body>
+
+<!-- Main Page -->
+<section id="home">
+<h1>🔥 Top Anime Series to Watch</h1>
+<img id="home-banner" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBZqU5uQrOdEV955i_AucExf1OSKWkcRpygQ&s" alt="Anime Banner">
+<div class="anime-list">
+  <div class="anime-card" onclick="showAnime('aot')">
+    <img src="https://m.media-amazon.com/images/M/MV5BZjliODY5MzQtMmViZC00MTZmLWFhMWMtMjMwM2I3OGY1MTRiXkEyXkFqcGc@.V1_FMjpg_UX1000.jpg" class="anime-poster">
+    <div class="anime-info"><h3>Attack on Titan</h3><p>Humanity vs. Titans in a brutal world.</p></div>
+  </div>
+  <div class="anime-card" onclick="showAnime('demonslayer')">
+    <img src="https://demonslayer-hinokami.sega.com/img/purchase/digital-deluxe.jpg" class="anime-poster">
+    <div class="anime-info"><h3>Demon Slayer</h3><p>Tanjiro’s journey to save his sister.</p></div>
+  </div>
+  <div class="anime-card" onclick="showAnime('onepiece')">
+    <img src="https://www.themarysue.com/wp-content/uploads/2024/05/One-Piece-egghead-arc.jpg" class="anime-poster">
+    <div class="anime-info"><h3>One Piece</h3><p>Epic adventure to find the One Piece treasure.</p></div>
+  </div>
+  <div class="anime-card" onclick="showAnime('jujutsu')">
+    <img src="https://m.media-amazon.com/images/M/MV5BNmI1MmYxNWQtY2E5NC00ZTlmLWIzZGEtNzM1YmE3NDA5NzhjXkEyXkFqcGc@.V1_FMjpg_UX1000.jpg" class="anime-poster">
+    <div class="anime-info"><h3>Jujutsu Kaisen</h3><p>Yuji fights curses to protect humanity.</p></div>
+  </div>
+  <div class="anime-card" onclick="showAnime('naruto')">
+    <img src="https://i.pinimg.com/736x/b3/bd/09/b3bd095b5734d31645cfbe62a6e2a9fc.jpg" class="anime-poster">
+    <div class="anime-info"><h3>Naruto</h3><p>A boy dreams to become Hokage.</p></div>
+  </div>
+  <div class="anime-card" onclick="showAnime('bleach')">
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/72/Bleachanime.png/250px-Bleachanime.png" class="anime-poster">
+    <div class="anime-info"><h3>Bleach</h3><p>Ichigo becomes a Soul Reaper.</p></div>
+  </div>
+</div>
+<button class="btn" onclick="showPage('sites')">🌐 Explore Anime Websites</button>
+</section>
+
+<!-- Anime Detail Pages -->
+<!-- Add this in the existing file where the AOT section is defined -->
+
+<!-- Anime Detail Pages -->
+<section id="aot">
+  <h1>Attack on Titan</h1>
+  <img src="https://m.media-amazon.com/images/M/MV5BZjliODY5MzQtMmViZC00MTZmLWFhMWMtMjMwM2I3OGY1MTRiXkEyXkFqcGc@.V1_FMjpg_UX1000.jpg" class="detail-img">
+  <p class="detail-desc">
+    Humanity lives behind giant walls to protect themselves from Titans. Eren Yeager joins the Survey Corps to uncover the truth behind these terrifying creatures.
+  </p>
+  <button class="btn" onclick="backHome()">⬅ Back to Home</button>
+</section>
+
+<section id="demonslayer">
+  <h1>Demon Slayer</h1>
+  <img src="https://demonslayer-hinokami.sega.com/img/purchase/digital-deluxe.jpg" class="detail-img">
+  <p class="detail-desc">
+    After demons slaughter his family, Tanjiro Kamado becomes a demon slayer to turn his sister Nezuko back into a human and seek revenge.
+  </p>
+  <button class="btn" onclick="backHome()">⬅ Back to Home</button>
+</section>
+
+<section id="onepiece">
+  <h1>One Piece</h1>
+  <img src="https://www.themarysue.com/wp-content/uploads/2024/05/One-Piece-egghead-arc.jpg" class="detail-img">
+  <p class="detail-desc">
+    Monkey D. Luffy sails the Grand Line with his crew in search of the legendary One Piece treasure to become the Pirate King.
+  </p>
+  <button class="btn" onclick="backHome()">⬅ Back to Home</button>
+</section>
+
+<section id="jujutsu">
+  <h1>Jujutsu Kaisen</h1>
+  <img src="https://m.media-amazon.com/images/M/MV5BNmI1MmYxNWQtY2E5NC00ZTlmLWIzZGEtNzM1YmE3NDA5NzhjXkEyXkFqcGc@.V1_FMjpg_UX1000.jpg" class="detail-img">
+  <p class="detail-desc">
+    Yuji Itadori swallows a cursed object and joins Jujutsu High to exorcise powerful curses threatening humanity.
+  </p>
+  <button class="btn" onclick="backHome()">⬅ Back to Home</button>
+</section>
+
+<section id="naruto">
+  <h1>Naruto</h1>
+  <img src="https://i.pinimg.com/736x/b3/bd/09/b3bd095b5734d31645cfbe62a6e2a9fc.jpg" class="detail-img">
+  <p class="detail-desc">
+    Naruto Uzumaki is a ninja ostracized by the village because of the Nine-Tails sealed within him. He dreams of becoming Hokage and earning respect.
+  </p>
+  <button class="btn" onclick="backHome()">⬅ Back to Home</button>
+</section>
+
+<section id="bleach">
+  <h1>Bleach</h1>
+  <img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/72/Bleachanime.png/250px-Bleachanime.png" class="detail-img">
+  <p class="detail-desc">
+    Ichigo Kurosaki becomes a Soul Reaper and battles evil spirits while uncovering hidden truths about the afterlife and his own destiny.
+  </p>
+  <button class="btn" onclick="backHome()">⬅ Back to Home</button>
+</section>
+
+<!-- Other anime detail sections are the same as above -->
+
+<!-- Anime Sites Page -->
+<section id="sites">
+<header>🌐 Explore Anime Websites 🌐</header>
+<div class="sites">
+  <a href="https://hianimez.is/home" target="_blank" class="site-btn">
+    <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/73/2a/5b/732a5ba2-e4d5-c078-989c-550765ab0c92/AppIcon-0-0-1x_U007epad-0-0-85-220.jpeg/512x512bb.jpg" />HiAnime
+  </a>
+  <a href="https://anime-world.app" target="_blank" class="site-btn">
+    <img src="https://pbs.twimg.com/profile_images/1397464801450790914/Gd49v7C0_400x400.jpg" />Anime World
+  </a>
+  <a href="https://animerulz.com.in" target="_blank" class="site-btn">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf5KBXm017AhmY2G0UBnrK3Q47iMaKWIPXkQ&s" />Animerulz
+  </a>
+  <a href="https://anilab.to" target="_blank" class="site-btn">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCT2fs2ruRdOVmc5OygxKJxtEemd-x7AGlQw&s" />Anilab
+  </a>
+</div>
+<button class="btn" onclick="backHome()">⬅ Back to Home</button>
+</section>
+
+<!-- Floating Robot -->
+<div id="robot">
+  <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" />
+</div>
+
+<script>
+function showPage(id){
+  document.querySelectorAll('section').forEach(s => s.style.display='none');
+  document.getElementById(id).style.display='flex';
+}
+function showAnime(id){ showPage(id); }
+
+function backHome(){
+  robotSpeak("Going back to home page!");
+  showPage('home');
+}
+
+function robotSpeak(text){
+  if('speechSynthesis' in window){
+    const msg = new SpeechSynthesisUtterance(text);
+    msg.volume = 1;
+    msg.pitch = 1;
+    msg.rate = 1;
+    const voices = speechSynthesis.getVoices();
+    const femaleVoice = voices.find(v => v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('zira'));
+    if(femaleVoice) msg.voice = femaleVoice;
+    window.speechSynthesis.speak(msg);
+  }
+}
+
+document.getElementById('robot').addEventListener('click', () => {
+  robotSpeak("Click the anime websites!");
+  showPage('sites');
+});
+
+showPage('home');
+</script>
+
+</body>
+</html>
